@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowdsourced Disaster Reporting Tool</title>
     <link rel="stylesheet" href="hcss.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+    <script src="hscript.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
                 <h1>Disaster Report</h1>
+                <br>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -22,18 +26,12 @@
         </nav>
     </header>
 
-    <section id="home" class="home-section">
-        <div class="hero-content">
-            <h2>Crowdsourced Disaster Reporting Tool</h2>
-            <p>Report real-time conditions during disasters to assist emergency services and affected individuals.</p>
-            <a href="#report" class="cta-button">Report an Issue</a>
-        </div>
-    </section>
-
     <section id="report" class="report-section">
         <div class="container">
             <h2>Report a Disaster Condition</h2>
-            <form action="#" method="post">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <br>
+                <!-- Condition -->
                 <label for="condition">Condition:</label>
                 <select id="condition" name="condition">
                     <option value="flood">Flood Level</option>
@@ -42,22 +40,47 @@
                     <option value="other">Other</option>
                 </select>
 
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" placeholder="Enter location...">
+                <!-- Flood Level -->
+                <label for="flood-level">Flood Level (if applicable):</label>
+                <input type="range" id="flood-level" name="flood-level" min="0" max="5" step="1">
+                <span id="flood-value">0</span>/5
 
+                <!-- Location -->
+                <label for="location">Location:</label>
+                <input type="text" id="autocomplete" name="location" placeholder="Enter location...">
+                <div id="autocomplete-suggestions"></div>
+
+                <!-- "Use My Current Location" Button -->
+                <button type="button" id="locate-button" class="styled-button">Use My Current Location</button>
+
+                <!-- Map Display -->
+                <div id="map" style="height: 300px; margin-top: 20px;"></div>
+
+                <!-- Upload Photo Options -->
+                <label for="upload-option">Upload Photo:</label>
+                <select id="upload-option" name="upload-option">
+                    <option value="camera">Use Camera</option>
+                    <option value="file">Upload File</option>
+                </select>
+
+                <!-- Camera Option -->
+                <label for="camera-upload" id="camera-label" style="display:none;">Capture Photo:</label>
+                <input type="file" accept="image/*" capture="environment" id="camera-upload" style="display:none;" onchange="previewImage(event)">
+                 <br><br>
+                <!-- File Upload Option -->
+                <label for="file-upload" class="custom-file-upload" id="file-label">Upload Picture</label>
+                <input id="file-upload" type="file" name="file" accept="image/*" onchange="previewImage(event)">
+
+                <!-- Image Preview -->
+                <img id="preview-img" style="display:none; width: 100px; height: auto; margin-top: 20px;" />
+                <br><br>
+                <!-- Additional Details -->
                 <label for="details">Details:</label>
                 <textarea id="details" name="details" placeholder="Enter specific details..."></textarea>
 
+                <!-- Report Option -->
                 <button type="submit" class="submit-button">Submit Report</button>
             </form>
-        </div>
-    </section>
-
-    <section id="data" class="data-section">
-        <div class="container">
-            <h2>Aggregated Data</h2>
-            <p>Data from user reports will appear here and help in real-time decision making.</p>
-            <!-- Data visualization will be integrated later -->
         </div>
     </section>
 
