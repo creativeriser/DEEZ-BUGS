@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdsourced Disaster Reporting Tool</title>
+    <link rel="stylesheet" href="hcss.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Disaster Report</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#report">Report</a></li>
+                <li><a href="#data">Aggregated Data</a></li>
+                <li><a href="#contact">Emergency Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="home-section">
+        <div class="hero-content">
+            <h2>Crowdsourced Disaster Reporting Tool</h2>
+            <p>Report real-time conditions during disasters to assist emergency services and affected individuals.</p>
+            <a href="#report" class="cta-button">Report an Issue</a>
+        </div>
+    </section>
+
+    <section id="report" class="report-section">
+        <div class="container">
+            <h2>Report a Disaster Condition</h2>
+            <form action="#" method="post">
+                <label for="condition">Condition:</label>
+                <select id="condition" name="condition">
+                    <option value="flood">Flood Level</option>
+                    <option value="roadblock">Road Blockage</option>
+                    <option value="damage">Infrastructure Damage</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter location...">
+
+                <label for="details">Details:</label>
+                <textarea id="details" name="details" placeholder="Enter specific details..."></textarea>
+
+                <button type="submit" class="submit-button">Submit Report</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="data" class="data-section">
+        <div class="container">
+            <h2>Aggregated Data</h2>
+            <p>Data from user reports will appear here and help in real-time decision making.</p>
+            <!-- Data visualization will be integrated later -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Disaster Reporting Tool. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
